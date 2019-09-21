@@ -1,0 +1,5 @@
+# images
+the images are user to create containers
+the image contain
+1. file system snapshot
+2. startup command

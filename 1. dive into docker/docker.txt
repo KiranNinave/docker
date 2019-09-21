@@ -1,0 +1,4 @@
+# docker
+docker internally use linux operating system because linux operating system only have feature of 
+1. namespacing (hardware resources i.e hardrive resource access only for that perticular process).
+2. control groups (we can limit the amount of resource like hardrive, ram , network and cpu etc access by perticular process)

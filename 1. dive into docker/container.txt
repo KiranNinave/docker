@@ -1,0 +1,64 @@
+# container
+the container is an instance of an image
+the container 
+1. mounts file system of image to its hardrive
+2. run startup command of an image as an process
+
+the container contains
+1. process
+2. kernal -- linux one
+3. hardware (hardrive, cpu, ram, network all shared by host os)
+
+the container isolation
+1. tow container of same image did not share file the system
+
+lifecycle of an container
+1. in order to create an conatiner we run command $ docker run <image_name> 
+    - $ docker run <image_name> = $ docker create <image_name> + $ docker start <conatiner_id>
+    - this command will create conatiner with default command and run it
+    - only problem is that if we want to run conatiner again the $ docker run <image_name> will create another conatiner with default command and run it 
+    - so outcome is we have two conatiner with same command
+
+2. creating container with $ docker create <image_name> <commands>
+    - this command will create contain with default command or overiding command 
+    - <command> is optional parameter that will overide default commands
+
+3. sarting an container with $ docker start -a <container_id>
+    - this command will start an container and watch for output
+    - if we did not mention -a flag then it will not listen for changes
+    - the $ docker start -a <conatiner_id> command cannot overide default command or the overided command that give at the time of the container creation
+    - this command is super usefull if we want to run existing conatiner and we dont want to overide and existing command or overided command that given at the time of creation
+
+4. view existing containers with its state with $ docker ps --all
+    - this command will print container info with its state
+
+5. log conatiner output with $ docker logs <conatiner_id>
+    - this command will log conatiner output 
+    - this command is super userfull if we forgot to include -a flag in $ docker start <container_id> command
+    - this command will not restart the container
+
+6. stoping the container with $ docker stop <container_id> or $ docker kill <conatiner_id>
+    - the $ docker stop <conatiner_id> command will send stop signal to the conatiner and after 10sec send kill signal
+    - so by using $ docker stop <conatiner_id> command the process inside the container will get 10 sec of time for clean up
+    - the $ docker kill <container_id> command will directly kill the process inside container and stop the container
+
+7. interacting with contianer by passing multiple commands with $ docker exec -it <container_id> <command>
+    - by default container start with default command or with overided command that is give at the time of creation
+    - we can pass addition commands to the running container by using $docker exec command 
+    - the -it flag stands for interaction input mode if we not specified it, then we cannot pass input commands to the container
+    - the -i flag will pass out input to STDIN of the process
+    - the -t flag will make out i/o operation looks pretty
+
+8. interacting with conatiner shell with $docker exec -it <conatiner_id> sh (or bash)
+    - the above command will help us to interact with the conatiners shell
+
+
+deleting all conatiners
+1. deleting all conatiners with $ docker system prune
+    - this command will delete
+        - all stopped containers
+        - all networks not used by at least one container
+        - all dangling images
+        - all dangling build cache
+    - note : this command did not delete images
+ 
