@@ -1,0 +1,17 @@
+the order in wich you put things inside Dockerfile is matter the most 
+
+in this examples Dockerfile 
+
+we put [ COPY ./package.json ./ ] before [RUN npm install] and [COPY ./ ./] 
+
+because docker only listen for updated changes and package.json file is not frequently get updated
+
+if package.json file is get updated then only npm install will run else it will take all from cache
+
+the source files are the one who frequently get changes so we put it after the npm install
+
+if we put [COPY ./ ./ ] before [RUN npm install] for every source code change the npm install command will invoked
+
+and that is uneccessory !
+
+important: in docker file order of content matters the most
