@@ -1,0 +1,19 @@
+the docker-composer is a way to automate docker-cli by writing commands in docker-composer.yml in specific format
+
+the docker-composer automaticaly create docker-network between multiple containers
+
+the commands that require to work with docker-composer found in commands.sh file
+
+
+# docker-composer restart polices
+    - there are some cases when we want automaticaly restart our web server or application on crashes or on exist
+    - in that cases we can use restart polices
+    - list of restart polices
+        - "no" := newer attempt to restart
+        - always := always attempt to restart
+        - on-failure := only restart on error code
+        - unless-stopped := always restart unless devloper stops it
+
+# status codes
+0 := sucess
+1,2,3... := error
