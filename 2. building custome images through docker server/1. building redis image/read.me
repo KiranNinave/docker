@@ -1,0 +1,21 @@
+how its works
+
+FROM alpine
+    - this command first look for apline (linux) image to local image cache
+    - if it didn't found the image in cache then docker will download that image from docker hub
+    - after downloading it will create tempory image
+
+RUN apk add --update redis
+    - first the docker will create tempory container from previous image
+    - this command will execute on tempory container
+    - this command will acts as a startup command for tempory container
+    - after execute it will create another tempory image
+
+CMD ["redis-server"]
+    - first the docker will create tempory container from previous image
+    - this command will execute on tempory container
+    - this command acts as a startup command for tempory container
+    - after this command the docker builds an image from tempory container 
+    - after image builded it will delete tempory containers and returns the image id
+
+summary: so the final image have both alpine(file system and environment) and redis installed with redis-server as startup command
